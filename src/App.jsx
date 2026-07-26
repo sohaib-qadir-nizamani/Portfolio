@@ -1,9 +1,10 @@
-// import Badge from "@/components/ui/Badge";
-// import Button from "@/components/ui/Button";
-// import Container from "@/components/ui/Container";
-// import Heading from "@/components/ui/Heading";
-// import Section from "@/components/ui/Section";
-import Header from "@/components/layout/Header";
+import Badge from "@/Components/ui/Badge";
+import Button from "@/Components/ui/Button";
+import Container from "@/Components/ui/Container";
+import Heading from "@/Components/ui/Heading";
+import Section from "@/Components/ui/Section";
+import Header from "@/Components/layout/Header";
+import Hero from "@/Components/sections/Hero";
 
 function App() {
   return (
@@ -11,10 +12,10 @@ function App() {
       <Header />
 
       <main className="flex h-[200vh] items-center justify-center">
-        <h1 className="text-5xl font-bold">Portfolio Coming Soon</h1>
+        <Hero />
       </main>
 
-      {/* <Section>
+      <Section>
         <Container>
           <Badge>Open to Remote Work</Badge>
 
@@ -23,12 +24,12 @@ function App() {
             subtitle="Building a premium React portfolio from scratch."
           />
 
-          <div className="flex gap-4 justify-center">
+          <div className="flex justify-center gap-4">
             <Button>View Projects</Button>
             <Button variant="secondary">Contact Me</Button>
           </div>
         </Container>
-      </Section> */}
+      </Section>
     </main>
   );
 }

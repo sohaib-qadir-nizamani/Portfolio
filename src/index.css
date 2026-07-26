@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* @layer utilities {
+  .backdrop-blur-md {
+    --tw-backdrop-blur: blur(var(--blur-md));
+    backdrop-filter: var(--tw-backdrop-blur);
+  }
+} */
+
+
+html {
+  scroll-behavior: smooth;
+}
