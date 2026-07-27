@@ -54,7 +54,7 @@ function MobileMenu({ isOpen, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation menu"
-        className={`fixed top-0 right-0 z-50 h-full w-72 bg-slate-900 border-l border-slate-800 shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 right-0 z-50 h-full w-full sm:w-72 bg-slate-900 border-l border-slate-800 shadow-2xl transition-transform duration-300 ease-in-out md:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
