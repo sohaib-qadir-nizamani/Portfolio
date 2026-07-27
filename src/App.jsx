@@ -5,15 +5,17 @@ import Heading from "@/Components/ui/Heading";
 import Section from "@/Components/ui/Section";
 import Header from "@/Components/layout/Header";
 import Hero from "@/Components/sections/Hero";
+import About from "@/Components/sections/About";
 
 function App() {
   return (
-    <main className="min-h-screen bg-slate-950 text-white">
+    <main className="flex min-h-screen flex-col bg-slate-950 text-white">
       <Header />
 
-      <main className="flex h-[200vh] items-center justify-center">
-        <Hero />
-      </main>
+      {/* <div className="flex h-[200vh] items-center justify-center"> */}
+      <Hero />
+      <About />
+      {/* </div> */}
 
       <Section>
         <Container>
