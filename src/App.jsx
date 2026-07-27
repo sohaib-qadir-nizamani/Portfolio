@@ -1,12 +1,14 @@
-import Badge from "@/Components/ui/Badge";
-import Button from "@/Components/ui/Button";
-import Container from "@/Components/ui/Container";
-import Heading from "@/Components/ui/Heading";
-import Section from "@/Components/ui/Section";
+// import Badge from "@/Components/ui/Badge";
+// import Button from "@/Components/ui/Button";
+// import Container from "@/Components/ui/Container";
+// import Heading from "@/Components/ui/Heading";
+// import Section from "@/Components/ui/Section";
 import Header from "@/Components/layout/Header";
 import Hero from "@/Components/sections/Hero";
 import About from "@/Components/sections/About";
 import Skills from "@/Components/sections/Skills";
+import Projects from "@/Components/sections/Projects";
+import Experience from "@/Components/sections/Experience";
 
 function App() {
   return (
@@ -17,23 +19,9 @@ function App() {
       <Hero />
       <About />
       <Skills />
+      <Projects />
+      <Experience />
       {/* </div> */}
-
-      <Section>
-        <Container>
-          <Badge>Open to Remote Work</Badge>
-
-          <Heading
-            title="World-Class Portfolio"
-            subtitle="Building a premium React portfolio from scratch."
-          />
-
-          <div className="flex justify-center gap-4">
-            <Button>View Projects</Button>
-            <Button variant="secondary">Contact Me</Button>
-          </div>
-        </Container>
-      </Section>
     </main>
   );
 }
