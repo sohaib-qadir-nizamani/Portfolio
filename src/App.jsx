@@ -6,6 +6,7 @@ import Section from "@/Components/ui/Section";
 import Header from "@/Components/layout/Header";
 import Hero from "@/Components/sections/Hero";
 import About from "@/Components/sections/About";
+import Skills from "@/Components/sections/Skills";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       {/* <div className="flex h-[200vh] items-center justify-center"> */}
       <Hero />
       <About />
+      <Skills />
       {/* </div> */}
 
       <Section>

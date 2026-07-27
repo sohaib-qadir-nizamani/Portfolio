@@ -2,7 +2,7 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 const HeroSocials = () => {
   return (
-    <div className="mt-10 flex items-center gap-5 border-4">
+    <div className="mt-10 flex items-center justify-center gap-5">
       <a
         href="https://github.com/sohaib-qadir-nizamani"
         target="_blank"
