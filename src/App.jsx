@@ -10,6 +10,7 @@ import Skills from "@/Components/sections/Skills";
 import Projects from "@/Components/sections/Projects";
 import Experience from "@/Components/sections/Experience";
 import Contact from "@/Components/sections/contact";
+import Footer from "@/Components/sections/Footer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Projects />
       <Experience />
       <Contact />
+      <Footer />
       {/* </div> */}
     </main>
   );
