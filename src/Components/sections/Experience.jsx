@@ -70,7 +70,7 @@ const Experience = () => {
         <div className="relative mx-auto max-w-4xl border-l-2 border-blue-600 pl-8">
           {experiences.map((item) => (
             <div key={item.year} className="relative mb-12">
-              <div className="absolute top-2 -left-[42px] h-5 w-5 rounded-full border-4 border-slate-950 bg-blue-500"></div>
+              <div className="absolute top-2 -left-10.5 h-5 w-5 rounded-full border-4 border-slate-950 bg-blue-500"></div>
 
               <p className="text-sm font-semibold text-blue-400">{item.year}</p>
 

@@ -9,7 +9,7 @@ const Footer = () => {
       <a
         href="#home"
         aria-label="Back to top"
-        className="absolute top-0 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-700 bg-slate-900 shadow-lg transition-all duration-300 hover:-translate-x-1/2 hover:-translate-y-[60%] hover:border-blue-500 hover:bg-blue-600"
+        className="absolute top-0 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-700 bg-slate-900 shadow-lg transition-all duration-300 hover:-translate-x-1/2 hover:translate-y-[-60%] hover:border-blue-500 hover:bg-blue-600"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
