@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="relative border-t border-slate-800 bg-slate-950">
       {/* Back to Top Button */}
-      <a
+      {/* <a
         href="#home"
         aria-label="Back to top"
         className="absolute top-0 left-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-slate-700 bg-slate-900 shadow-lg transition-all duration-300 hover:-translate-x-1/2 hover:translate-y-[-60%] hover:border-blue-500 hover:bg-blue-600"
@@ -25,7 +25,7 @@ const Footer = () => {
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </a>
+      </a> */}
 
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 pt-16 pb-8">
         {/* Branding */}

@@ -46,9 +46,10 @@ const useFloatingNavigatorState = () => {
         ? "Scroll to the previous section"
         : "Scroll to the next section";
 
-  const positionClassName = footerVisible
-    ? POSITION_CLASSES["footer-active"]
-    : POSITION_CLASSES.floating;
+  const positionClassName =
+    footerState === "active"
+      ? POSITION_CLASSES["footer-active"]
+      : POSITION_CLASSES.floating;
 
   return {
     arrowDirection,

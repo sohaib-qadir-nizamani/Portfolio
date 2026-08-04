@@ -12,7 +12,10 @@ const Hero = () => {
       className="relative flex min-h-screen items-center bg-slate-950 pt-24 md:pt-28"
     >
       {/* Background Glow — clipped so it never causes horizontal scroll */}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
         <div className="absolute top-20 -left-40 h-96 w-96 rounded-full bg-blue-600/15 blur-3xl" />
         <div className="absolute -right-40 bottom-20 h-96 w-96 rounded-full bg-cyan-500/15 blur-3xl" />
       </div>
@@ -80,7 +83,7 @@ const Hero = () => {
 
         {/* Right Content */}
         <motion.div
-          className="flex w-full max-w-xs justify-center sm:max-w-sm md:max-w-none md:w-1/2"
+          className="flex w-full max-w-xs justify-center sm:max-w-sm md:w-1/2 md:max-w-none"
           initial={
             shouldReduceMotion
               ? false
@@ -130,7 +133,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+      {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <a
           href="#about"
           aria-label="Scroll to About section"
@@ -158,7 +161,7 @@ const Hero = () => {
             />
           </svg>
         </a>
-      </div>
+      </div> */}
     </section>
   );
 };

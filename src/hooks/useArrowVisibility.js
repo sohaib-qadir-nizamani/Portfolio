@@ -4,7 +4,7 @@ const HIDE_DELAY_MS = 500;
 const EVENT_THROTTLE_MS = 50;
 
 const useArrowVisibility = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const hideTimerRef = useRef(null);
   const lastEventTimeRef = useRef(0);
 
@@ -36,7 +36,7 @@ const useArrowVisibility = () => {
       }, HIDE_DELAY_MS);
     };
 
-    showArrow();
+    setIsVisible(true);
 
     window.addEventListener("scroll", showArrow, { passive: true });
     window.addEventListener("wheel", showArrow, { passive: true });

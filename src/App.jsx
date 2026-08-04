@@ -6,6 +6,7 @@
 import Header from "@/Components/layout/Header";
 import { useEffect } from "react";
 import Hero from "@/Components/sections/Hero";
+import FloatingSectionNavigator from "@/Components/ui/FloatingSectionNavigator";
 import About from "@/Components/sections/About";
 import Skills from "@/Components/sections/Skills";
 import Projects from "@/Components/sections/Projects";
@@ -32,6 +33,7 @@ function App() {
 
       {/* <div className="flex h-[200vh] items-center justify-center"> */}
       <Hero />
+      <FloatingSectionNavigator />
       <About />
       <Skills />
       <Projects />
