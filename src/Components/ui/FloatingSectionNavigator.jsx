@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { SECTION_IDS } from "@/constants/navigation";
 import useActiveSection from "@/hooks/useActiveSection";
+import useFooterState from "@/hooks/useFooterState";
 import useScrollDirection from "@/hooks/useScrollDirection";
 
 const HIDE_DELAY_MS = 500;
@@ -13,9 +14,9 @@ const FloatingSectionNavigator = () => {
   const shouldReduceMotion = useReducedMotion();
   const activeIndex = useActiveSection();
   const scrollDirection = useScrollDirection();
+  const footerState = useFooterState();
   const [arrowDirection, setArrowDirection] = useState("down");
   const [isVisible, setIsVisible] = useState(false);
-  const [isFooterVisible, setIsFooterVisible] = useState(false);
   const [positionStyle, setPositionStyle] = useState({
     position: "fixed",
     bottom: "1.5rem",
@@ -39,32 +40,23 @@ const FloatingSectionNavigator = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const footerEl = document.querySelector("footer");
-      const footerRect = footerEl?.getBoundingClientRect();
-      const footerVisible = footerEl
-        ? footerRect.top <=
-          window.innerHeight * FOOTER_POSITION_VISIBLE_THRESHOLD
-        : false;
-      const footerAtLeastEightyVisible = footerEl
-        ? footerRect.bottom - footerRect.top > 0 &&
-          footerRect.bottom / footerRect.height >=
-            1 - FOOTER_DIRECTION_VISIBLE_THRESHOLD
-        : false;
+      const footerVisible =
+        footerState === "visible" || footerState === "active";
+      const footerAtLeastEightyVisible = footerState === "active";
 
-      const nextStyle =
-        footerVisible && footerEl
-          ? {
-              position: "absolute",
-              top: "0",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }
-          : {
-              position: "fixed",
-              bottom: "1.5rem",
-              left: "50%",
-              transform: "translateX(-50%)",
-            };
+      const nextStyle = footerVisible
+        ? {
+            position: "absolute",
+            top: "0",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }
+        : {
+            position: "fixed",
+            bottom: "1.5rem",
+            left: "50%",
+            transform: "translateX(-50%)",
+          };
 
       const resolvedDirection = footerAtLeastEightyVisible
         ? "up"
@@ -75,7 +67,6 @@ const FloatingSectionNavigator = () => {
             : "up";
 
       setArrowDirection(resolvedDirection);
-      setIsFooterVisible(footerVisible);
       setPositionStyle(nextStyle);
       showArrow();
     };
@@ -103,7 +94,7 @@ const FloatingSectionNavigator = () => {
   const handleNavigate = (event) => {
     event.preventDefault();
 
-    if (isFooterVisible && arrowDirection === "up") {
+    if (footerState === "active" && arrowDirection === "up") {
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
@@ -137,7 +128,7 @@ const FloatingSectionNavigator = () => {
       <motion.button
         type="button"
         aria-label={
-          isFooterVisible
+          footerState === "active"
             ? "Scroll to the top of the page"
             : arrowDirection === "up"
               ? "Scroll to the previous section"
