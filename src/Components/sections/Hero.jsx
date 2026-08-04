@@ -132,36 +132,6 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <a
-          href="#about"
-          aria-label="Scroll to About section"
-          className="animate-bounce text-slate-400 transition hover:text-blue-400 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none"
-          onClick={(e) => {
-            e.preventDefault();
-            const aboutEl = document.getElementById("about");
-            if (aboutEl) {
-              aboutEl.scrollIntoView({ behavior: "smooth" });
-            }
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-7 w-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </a>
-      </div> */}
     </section>
   );
 };
