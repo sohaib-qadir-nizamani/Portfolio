@@ -1,42 +1,26 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { SECTION_IDS } from "@/constants/navigation";
 import useActiveSection from "@/hooks/useActiveSection";
+import useArrowVisibility from "@/hooks/useArrowVisibility";
 import useFooterState from "@/hooks/useFooterState";
 import useScrollDirection from "@/hooks/useScrollDirection";
 
-const HIDE_DELAY_MS = 500;
 const NAV_OFFSET = 96;
-const FOOTER_POSITION_VISIBLE_THRESHOLD = 0.2;
-const FOOTER_DIRECTION_VISIBLE_THRESHOLD = 0.8;
 
 const FloatingSectionNavigator = () => {
   const shouldReduceMotion = useReducedMotion();
   const activeIndex = useActiveSection();
   const scrollDirection = useScrollDirection();
   const footerState = useFooterState();
+  const isVisible = useArrowVisibility();
   const [arrowDirection, setArrowDirection] = useState("down");
-  const [isVisible, setIsVisible] = useState(false);
   const [positionStyle, setPositionStyle] = useState({
     position: "fixed",
     bottom: "1.5rem",
     left: "50%",
     transform: "translateX(-50%)",
   });
-
-  const hideTimerRef = useRef(null);
-
-  const showArrow = () => {
-    if (hideTimerRef.current) {
-      window.clearTimeout(hideTimerRef.current);
-    }
-
-    setIsVisible(true);
-
-    hideTimerRef.current = window.setTimeout(() => {
-      setIsVisible(false);
-    }, HIDE_DELAY_MS);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,26 +52,14 @@ const FloatingSectionNavigator = () => {
 
       setArrowDirection(resolvedDirection);
       setPositionStyle(nextStyle);
-      showArrow();
     };
 
     handleScroll();
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("wheel", showArrow, { passive: true });
-    window.addEventListener("touchmove", showArrow, { passive: true });
-    window.addEventListener("mousemove", showArrow, { passive: true });
-    window.addEventListener("keydown", showArrow);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("wheel", showArrow);
-      window.removeEventListener("touchmove", showArrow);
-      window.removeEventListener("mousemove", showArrow);
-      window.removeEventListener("keydown", showArrow);
-      if (hideTimerRef.current) {
-        window.clearTimeout(hideTimerRef.current);
-      }
     };
   }, []);
 
