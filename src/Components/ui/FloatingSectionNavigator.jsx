@@ -1,94 +1,18 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
-import useActiveSection from "@/hooks/useActiveSection";
 import useArrowVisibility from "@/hooks/useArrowVisibility";
-import useFooterState from "@/hooks/useFooterState";
-import useScrollDirection from "@/hooks/useScrollDirection";
-import useSectionNavigation from "@/hooks/useSectionNavigation";
+import useFloatingNavigatorState from "@/hooks/useFloatingNavigatorState";
 
 const FloatingSectionNavigator = () => {
   const shouldReduceMotion = useReducedMotion();
-  const activeIndex = useActiveSection();
-  const scrollDirection = useScrollDirection();
-  const footerState = useFooterState();
   const isVisible = useArrowVisibility();
-  const { goHero, goNext, goPrevious } = useSectionNavigation();
-  const [arrowDirection, setArrowDirection] = useState("down");
-  const [positionStyle, setPositionStyle] = useState({
-    position: "fixed",
-    bottom: "1.5rem",
-    left: "50%",
-    transform: "translateX(-50%)",
-  });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const footerVisible =
-        footerState === "visible" || footerState === "active";
-      const footerAtLeastEightyVisible = footerState === "active";
-
-      const nextStyle = footerVisible
-        ? {
-            position: "absolute",
-            top: "0",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }
-        : {
-            position: "fixed",
-            bottom: "1.5rem",
-            left: "50%",
-            transform: "translateX(-50%)",
-          };
-
-      const resolvedDirection = footerAtLeastEightyVisible
-        ? "up"
-        : footerVisible
-          ? "up"
-          : scrollDirection === "down"
-            ? "down"
-            : "up";
-
-      setArrowDirection(resolvedDirection);
-      setPositionStyle(nextStyle);
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
-  const handleNavigate = (event) => {
-    event.preventDefault();
-
-    if (footerState === "active" && arrowDirection === "up") {
-      goHero();
-      return;
-    }
-
-    if (arrowDirection === "down") {
-      goNext(activeIndex);
-      return;
-    }
-
-    goPrevious(activeIndex);
-  };
+  const { arrowDirection, positionStyle, ariaLabel, handleNavigate } =
+    useFloatingNavigatorState();
 
   return (
     <AnimatePresence>
       <motion.button
         type="button"
-        aria-label={
-          footerState === "active"
-            ? "Scroll to the top of the page"
-            : arrowDirection === "up"
-              ? "Scroll to the previous section"
-              : "Scroll to the next section"
-        }
+        aria-label={ariaLabel}
         onClick={handleNavigate}
         initial={false}
         animate={{
