@@ -1,14 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
 import useActiveSection from "@/hooks/useActiveSection";
 import useFooterState from "@/hooks/useFooterState";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useSectionNavigation from "@/hooks/useSectionNavigation";
 
-const DEFAULT_POSITION_STYLE = {
-  position: "fixed",
-  bottom: "1.5rem",
-  left: "50%",
-  transform: "translateX(-50%)",
+const POSITION_CLASSES = {
+  floating: "fixed bottom-6 left-1/2 -translate-x-1/2",
+  "footer-active": "absolute top-0 left-1/2 -translate-x-1/2",
 };
 
 const useFloatingNavigatorState = () => {
@@ -16,33 +13,15 @@ const useFloatingNavigatorState = () => {
   const scrollDirection = useScrollDirection();
   const footerState = useFooterState();
   const { goHero, goNext, goPrevious } = useSectionNavigation();
-  const [arrowDirection, setArrowDirection] = useState("down");
-  const [positionStyle, setPositionStyle] = useState(DEFAULT_POSITION_STYLE);
 
-  useEffect(() => {
-    const footerVisible = footerState === "visible" || footerState === "active";
-    const footerAtLeastEightyVisible = footerState === "active";
-
-    const nextStyle = footerVisible
-      ? {
-        position: "absolute",
-        top: "0",
-        left: "50%",
-        transform: "translateX(-50%)",
-      }
-      : DEFAULT_POSITION_STYLE;
-
-    const resolvedDirection = footerAtLeastEightyVisible
+  const footerVisible = footerState === "visible" || footerState === "active";
+  const arrowDirection = footerState === "active"
+    ? "up"
+    : footerVisible
       ? "up"
-      : footerVisible
-        ? "up"
-        : scrollDirection === "down"
-          ? "down"
-          : "up";
-
-    setArrowDirection(resolvedDirection);
-    setPositionStyle(nextStyle);
-  }, [footerState, scrollDirection]);
+      : scrollDirection === "down"
+        ? "down"
+        : "up";
 
   const handleNavigate = (event) => {
     event.preventDefault();
@@ -60,19 +39,20 @@ const useFloatingNavigatorState = () => {
     goPrevious(activeIndex);
   };
 
-  const ariaLabel = useMemo(() => {
-    if (footerState === "active") {
-      return "Scroll to the top of the page";
-    }
+  const ariaLabel =
+    footerState === "active"
+      ? "Scroll to the top of the page"
+      : arrowDirection === "up"
+        ? "Scroll to the previous section"
+        : "Scroll to the next section";
 
-    return arrowDirection === "up"
-      ? "Scroll to the previous section"
-      : "Scroll to the next section";
-  }, [arrowDirection, footerState]);
+  const positionClassName = footerVisible
+    ? POSITION_CLASSES["footer-active"]
+    : POSITION_CLASSES.floating;
 
   return {
     arrowDirection,
-    positionStyle,
+    positionClassName,
     ariaLabel,
     handleNavigate,
   };

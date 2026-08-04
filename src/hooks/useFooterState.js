@@ -26,7 +26,7 @@ const useFooterState = () => {
 
       const footerVisible = footerRect.top <= window.innerHeight * 0.2;
       const footerVisibleRatio =
-        footerHeight > 0 ? (footerRect.bottom / footerHeight) : 0;
+        footerHeight > 0 ? footerRect.bottom / footerHeight : 0;
 
       if (!footerVisible) {
         setFooterState("hidden");

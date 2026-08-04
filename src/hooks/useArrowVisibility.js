@@ -14,8 +14,9 @@ const useArrowVisibility = () => {
     }
 
     const clearHideTimer = () => {
-      if (hideTimerRef.current) {
+      if (hideTimerRef.current !== null) {
         window.clearTimeout(hideTimerRef.current);
+        hideTimerRef.current = null;
       }
     };
 
@@ -31,16 +32,13 @@ const useArrowVisibility = () => {
 
       hideTimerRef.current = window.setTimeout(() => {
         setIsVisible(false);
+        hideTimerRef.current = null;
       }, HIDE_DELAY_MS);
-    };
-
-    const handleScroll = () => {
-      showArrow();
     };
 
     showArrow();
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", showArrow, { passive: true });
     window.addEventListener("wheel", showArrow, { passive: true });
     window.addEventListener("touchmove", showArrow, { passive: true });
     window.addEventListener("mousemove", showArrow, { passive: true });
@@ -48,7 +46,7 @@ const useArrowVisibility = () => {
 
     return () => {
       clearHideTimer();
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", showArrow);
       window.removeEventListener("wheel", showArrow);
       window.removeEventListener("touchmove", showArrow);
       window.removeEventListener("mousemove", showArrow);
