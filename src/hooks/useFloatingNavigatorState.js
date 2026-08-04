@@ -26,7 +26,7 @@ const useFloatingNavigatorState = () => {
   const handleNavigate = (event) => {
     event.preventDefault();
 
-    if (footerState === "active" && arrowDirection === "up") {
+    if (footerVisible && arrowDirection === "up") {
       goHero();
       return;
     }
