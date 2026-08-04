@@ -1,12 +1,10 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { SECTION_IDS } from "@/constants/navigation";
 import useActiveSection from "@/hooks/useActiveSection";
 import useArrowVisibility from "@/hooks/useArrowVisibility";
 import useFooterState from "@/hooks/useFooterState";
 import useScrollDirection from "@/hooks/useScrollDirection";
-
-const NAV_OFFSET = 96;
+import useSectionNavigation from "@/hooks/useSectionNavigation";
 
 const FloatingSectionNavigator = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -14,6 +12,7 @@ const FloatingSectionNavigator = () => {
   const scrollDirection = useScrollDirection();
   const footerState = useFooterState();
   const isVisible = useArrowVisibility();
+  const { goHero, goNext, goPrevious } = useSectionNavigation();
   const [arrowDirection, setArrowDirection] = useState("down");
   const [positionStyle, setPositionStyle] = useState({
     position: "fixed",
@@ -67,32 +66,16 @@ const FloatingSectionNavigator = () => {
     event.preventDefault();
 
     if (footerState === "active" && arrowDirection === "up") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      goHero();
       return;
     }
 
-    if (arrowDirection === "down" && activeIndex < SECTION_IDS.length - 1) {
-      const targetId = SECTION_IDS[activeIndex + 1];
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        window.scrollTo({
-          top: targetEl.offsetTop - NAV_OFFSET,
-          behavior: "smooth",
-        });
-      }
+    if (arrowDirection === "down") {
+      goNext(activeIndex);
       return;
     }
 
-    if (arrowDirection === "up" && activeIndex > 0) {
-      const targetId = SECTION_IDS[activeIndex - 1];
-      const targetEl = document.getElementById(targetId);
-      if (targetEl) {
-        window.scrollTo({
-          top: targetEl.offsetTop - NAV_OFFSET,
-          behavior: "smooth",
-        });
-      }
-    }
+    goPrevious(activeIndex);
   };
 
   return (
