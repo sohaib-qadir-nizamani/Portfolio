@@ -1,6 +1,8 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { SECTION_IDS } from "@/constants/navigation";
+import useActiveSection from "@/hooks/useActiveSection";
+import useScrollDirection from "@/hooks/useScrollDirection";
 
 const HIDE_DELAY_MS = 500;
 const NAV_OFFSET = 96;
@@ -9,7 +11,8 @@ const FOOTER_DIRECTION_VISIBLE_THRESHOLD = 0.8;
 
 const FloatingSectionNavigator = () => {
   const shouldReduceMotion = useReducedMotion();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndex = useActiveSection();
+  const scrollDirection = useScrollDirection();
   const [arrowDirection, setArrowDirection] = useState("down");
   const [isVisible, setIsVisible] = useState(false);
   const [isFooterVisible, setIsFooterVisible] = useState(false);
@@ -20,7 +23,6 @@ const FloatingSectionNavigator = () => {
     transform: "translateX(-50%)",
   });
 
-  const lastScrollTopRef = useRef(0);
   const hideTimerRef = useRef(null);
 
   const showArrow = () => {
@@ -35,40 +37,8 @@ const FloatingSectionNavigator = () => {
     }, HIDE_DELAY_MS);
   };
 
-  const getCurrentSection = () => {
-    const scrollPosition = window.scrollY + window.innerHeight * 0.3;
-    let activeIndexValue = 0;
-
-    SECTION_IDS.forEach((id, index) => {
-      const section = document.getElementById(id);
-      if (!section) return;
-
-      const top = section.offsetTop;
-      const bottom = top + section.offsetHeight;
-
-      if (scrollPosition >= top && scrollPosition < bottom) {
-        activeIndexValue = index;
-      }
-    });
-
-    if (
-      scrollPosition >=
-      document.documentElement.scrollHeight - window.innerHeight - 120
-    ) {
-      activeIndexValue = SECTION_IDS.length - 1;
-    }
-
-    return activeIndexValue;
-  };
-
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollTop = window.scrollY;
-      const direction =
-        currentScrollTop > lastScrollTopRef.current ? "down" : "up";
-      lastScrollTopRef.current = currentScrollTop;
-
-      const currentIndex = getCurrentSection();
       const footerEl = document.querySelector("footer");
       const footerRect = footerEl?.getBoundingClientRect();
       const footerVisible = footerEl
@@ -100,11 +70,10 @@ const FloatingSectionNavigator = () => {
         ? "up"
         : footerVisible
           ? "up"
-          : direction === "down"
+          : scrollDirection === "down"
             ? "down"
             : "up";
 
-      setActiveIndex(currentIndex);
       setArrowDirection(resolvedDirection);
       setIsFooterVisible(footerVisible);
       setPositionStyle(nextStyle);
