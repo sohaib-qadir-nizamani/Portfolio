@@ -15,13 +15,16 @@ const useFloatingNavigatorState = () => {
   const { goHero, goNext, goPrevious } = useSectionNavigation();
 
   const footerVisible = footerState === "visible" || footerState === "active";
+  const isHeroActive = activeIndex === 0;
   const arrowDirection = footerState === "active"
     ? "up"
     : footerVisible
       ? "up"
-      : scrollDirection === "down"
+      : isHeroActive
         ? "down"
-        : "up";
+        : scrollDirection === "down"
+          ? "down"
+          : "up";
 
   const handleNavigate = (event) => {
     event.preventDefault();
