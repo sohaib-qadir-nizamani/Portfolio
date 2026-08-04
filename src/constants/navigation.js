@@ -1,18 +1,24 @@
-const navigation = [
-  // { label: "Home", href: "#home" },
-  // { label: "About", href: "#about" },
-  // { label: "Skills", href: "#skills" },
-  // { label: "Projects", href: "#projects" },
-  // { label: "Experience", href: "#experience" },
-  // { label: "Services", href: "#services" },
-  // { label: "Contact", href: "#contact" },
-  { id: "home", label: "Home" },
-  { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
-  { id: "experience", label: "Experience" },
-  { id: "services", label: "Services" },
-  { id: "contact", label: "Contact" },
+export const SECTION_IDS = [
+  "home",
+  "about",
+  "skills",
+  "projects",
+  "experience",
+  "contact",
 ];
+
+const SECTION_LABELS = {
+  home: "Home",
+  about: "About",
+  skills: "Skills",
+  projects: "Projects",
+  experience: "Experience",
+  contact: "Contact",
+};
+
+const navigation = SECTION_IDS.map((id) => ({
+  id,
+  label: SECTION_LABELS[id],
+}));
 
 export default navigation;
