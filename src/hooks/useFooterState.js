@@ -24,19 +24,18 @@ const useFooterState = () => {
         return;
       }
 
-      const footerVisible = footerRect.top <= window.innerHeight * 0.2;
-      const footerVisibleRatio =
-        footerHeight > 0 ? footerRect.bottom / footerHeight : 0;
+      const isIntersecting = footerRect.top < window.innerHeight && footerRect.bottom > 0;
+      const isFullyVisible = footerRect.top >= 0 && footerRect.bottom <= window.innerHeight;
+      const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
 
-      if (!footerVisible) {
-        setFooterState("hidden");
-        return;
-      }
-
-      if (footerVisibleRatio >= 1 - 0.8) {
-        setFooterState("active");
+      if (isIntersecting) {
+        if (isFullyVisible || isAtBottom) {
+          setFooterState("active");
+        } else {
+          setFooterState("visible");
+        }
       } else {
-        setFooterState("visible");
+        setFooterState("hidden");
       }
     };
 
@@ -61,8 +60,9 @@ const useFooterState = () => {
         }
 
         const footerVisibleRatio = entry.intersectionRatio;
+        const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
 
-        if (entry.isIntersecting && footerVisibleRatio >= 0.8) {
+        if (entry.isIntersecting && (footerVisibleRatio >= 0.8 || isAtBottom)) {
           setFooterState("active");
         } else if (entry.isIntersecting) {
           setFooterState("visible");

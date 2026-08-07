@@ -9,6 +9,10 @@ const useActiveSection = () => {
       return undefined;
     }
 
+    // Scroll-position calculation is the authoritative source.
+    // It correctly handles sections that are taller than the viewport (e.g.
+    // Experience) where IntersectionObserver thresholds may never fire because
+    // the required visible fraction is never reached inside the clipped root.
     const getCurrentSectionIndex = () => {
       const scrollPosition = window.scrollY + window.innerHeight * 0.3;
       let currentIndex = 0;
@@ -39,56 +43,17 @@ const useActiveSection = () => {
       setActiveIndex(getCurrentSectionIndex());
     };
 
-    if (typeof IntersectionObserver === "undefined") {
-      updateActiveSection();
-      window.addEventListener("scroll", updateActiveSection, { passive: true });
-      window.addEventListener("resize", updateActiveSection);
-
-      return () => {
-        window.removeEventListener("scroll", updateActiveSection);
-        window.removeEventListener("resize", updateActiveSection);
-      };
-    }
-
-    const sectionElements = SECTION_IDS.map((id) => document.getElementById(id)).filter(Boolean);
-
-    if (sectionElements.length === 0) {
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => {
-            if (b.intersectionRatio !== a.intersectionRatio) {
-              return b.intersectionRatio - a.intersectionRatio;
-            }
-
-            return Math.abs(a.boundingClientRect.top) - Math.abs(b.boundingClientRect.top);
-          });
-
-        if (visibleEntries.length > 0) {
-          const activeEntry = visibleEntries[0];
-          const index = Number(activeEntry.target.dataset.sectionIndex);
-          setActiveIndex(index);
-        }
-      },
-      {
-        threshold: [0.1, 0.3, 0.5, 0.75],
-        rootMargin: "-20% 0px -20% 0px",
-      },
-    );
-
-    sectionElements.forEach((section, index) => {
-      section.dataset.sectionIndex = index;
-      observer.observe(section);
-    });
-
+    // Always run the scroll-based update on every scroll event.
+    // This is the single source of truth for activeIndex, and it handles all
+    // section heights reliably without depending on IntersectionObserver
+    // thresholds that can silently fail for very tall sections.
     updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection, { passive: true });
 
     return () => {
-      observer.disconnect();
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
     };
   }, []);
 

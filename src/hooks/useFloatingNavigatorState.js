@@ -2,11 +2,14 @@ import useActiveSection from "@/hooks/useActiveSection";
 import useFooterState from "@/hooks/useFooterState";
 import useScrollDirection from "@/hooks/useScrollDirection";
 import useSectionNavigation from "@/hooks/useSectionNavigation";
+import { SECTION_IDS } from "@/constants/navigation";
 
-const POSITION_CLASSES = {
-  floating: "fixed bottom-6 left-1/2 -translate-x-1/2",
-  "footer-active": "absolute top-0 left-1/2 -translate-x-1/2",
-};
+// Single position class used in all states.
+// The button must always be `fixed` so it stays in the viewport and remains
+// clickable regardless of scroll position. Using `absolute` while rendered
+// inside <main> would place it at the top of the document when footer-active —
+// completely off-screen when the user is at the bottom of the page.
+const POSITION_CLASS = "fixed bottom-6 left-1/2 -translate-x-1/2";
 
 const useFloatingNavigatorState = () => {
   const activeIndex = useActiveSection();
@@ -14,27 +17,38 @@ const useFloatingNavigatorState = () => {
   const footerState = useFooterState();
   const { goHero, goNext, goPrevious } = useSectionNavigation();
 
-  const footerVisible = footerState === "visible" || footerState === "active";
+  // Derived boolean — single source of truth for the footer-active condition.
+  const isFooterActive = footerState === "active";
+
+  // Arrow direction priority:
+  //   1. Footer active  → always UP  (ignore scroll-direction noise)
+  //   2. Hero active    → always DOWN
+  //   3. Otherwise      → follow scroll direction
   const isHeroActive = activeIndex === 0;
-  const arrowDirection = footerState === "active"
+  const arrowDirection = isFooterActive
     ? "up"
-    : footerVisible
-      ? "up"
-      : isHeroActive
+    : isHeroActive
+      ? "down"
+      : scrollDirection === "down"
         ? "down"
-        : scrollDirection === "down"
-          ? "down"
-          : "up";
+        : "up";
 
   const handleNavigate = (event) => {
     event.preventDefault();
 
-    if (footerVisible && arrowDirection === "up") {
+    if (isFooterActive) {
       goHero();
       return;
     }
 
     if (arrowDirection === "down") {
+      if (activeIndex === SECTION_IDS.length - 1) {
+        const footerEl = document.querySelector("footer");
+        if (footerEl) {
+          footerEl.scrollIntoView({ behavior: "smooth" });
+        }
+        return;
+      }
       goNext(activeIndex);
       return;
     }
@@ -42,23 +56,18 @@ const useFloatingNavigatorState = () => {
     goPrevious(activeIndex);
   };
 
-  const ariaLabel =
-    footerState === "active"
-      ? "Scroll to the top of the page"
-      : arrowDirection === "up"
-        ? "Scroll to the previous section"
-        : "Scroll to the next section";
-
-  const positionClassName =
-    footerState === "active"
-      ? POSITION_CLASSES["footer-active"]
-      : POSITION_CLASSES.floating;
+  const ariaLabel = isFooterActive
+    ? "Scroll to the top of the page"
+    : arrowDirection === "up"
+      ? "Scroll to the previous section"
+      : "Scroll to the next section";
 
   return {
     arrowDirection,
-    positionClassName,
+    positionClassName: POSITION_CLASS,
     ariaLabel,
     handleNavigate,
+    isFooterActive,
   };
 };
 
