@@ -3,6 +3,15 @@ import { useEffect, useRef, useState, useCallback } from "react";
 const HIDE_DELAY_MS = 500;
 const EVENT_THROTTLE_MS = 50;
 
+const isMobileMenuOpen = () => {
+  if (typeof document === "undefined") return false;
+  const menuDialog = document.querySelector('aside[role="dialog"]');
+  if (!menuDialog) return false;
+  // Check if the menu is actually open (has translate-x-0 class)
+  // When closed, it has translate-x-full (off-screen to the right)
+  return menuDialog.classList.contains('translate-x-0');
+};
+
 const useArrowVisibility = (isFooterActive = false) => {
   const [isVisible, setIsVisible] = useState(true);
   const [, setIsHovered] = useState(false);
@@ -82,6 +91,12 @@ const useArrowVisibility = (isFooterActive = false) => {
     };
 
     const showArrow = () => {
+      // Suppress visibility when mobile hamburger menu is open.
+      if (isMobileMenuOpen()) {
+        setIsVisible(false);
+        return;
+      }
+
       const now = Date.now();
       if (now - lastEventTimeRef.current < EVENT_THROTTLE_MS) {
         return;

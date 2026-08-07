@@ -1,10 +1,19 @@
 import { SECTION_IDS } from "@/constants/navigation";
 
-const NAV_OFFSET = 96;
+const getNavOffset = () => {
+  if (typeof window === "undefined") return 96;
+  return window.innerWidth <= 767 ? 64 : 96;
+};
 
 const useSectionNavigation = () => {
   const goHero = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const getScrollTop = (element) => {
+    if (!element) return 0;
+    const rect = element.getBoundingClientRect();
+    return rect.top + window.scrollY;
   };
 
   const goNext = (activeIndex) => {
@@ -13,8 +22,9 @@ const useSectionNavigation = () => {
       const targetEl = document.getElementById(targetId);
 
       if (targetEl) {
+        const navOffset = getNavOffset();
         window.scrollTo({
-          top: targetEl.offsetTop - NAV_OFFSET,
+          top: getScrollTop(targetEl) - navOffset,
           behavior: "smooth",
         });
       }
@@ -27,8 +37,9 @@ const useSectionNavigation = () => {
       const targetEl = document.getElementById(targetId);
 
       if (targetEl) {
+        const navOffset = getNavOffset();
         window.scrollTo({
-          top: targetEl.offsetTop - NAV_OFFSET,
+          top: getScrollTop(targetEl) - navOffset,
           behavior: "smooth",
         });
       }

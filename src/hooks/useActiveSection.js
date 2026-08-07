@@ -13,6 +13,7 @@ const useActiveSection = () => {
     // It correctly handles sections that are taller than the viewport (e.g.
     // Experience) where IntersectionObserver thresholds may never fire because
     // the required visible fraction is never reached inside the clipped root.
+    // Uses getBoundingClientRect for reliable, layout-independent positioning.
     const getCurrentSectionIndex = () => {
       const scrollPosition = window.scrollY + window.innerHeight * 0.3;
       let currentIndex = 0;
@@ -21,8 +22,9 @@ const useActiveSection = () => {
         const section = document.getElementById(id);
         if (!section) return;
 
-        const top = section.offsetTop;
-        const bottom = top + section.offsetHeight;
+        const rect = section.getBoundingClientRect();
+        const top = rect.top + window.scrollY;
+        const bottom = top + rect.height;
 
         if (scrollPosition >= top && scrollPosition < bottom) {
           currentIndex = index;
