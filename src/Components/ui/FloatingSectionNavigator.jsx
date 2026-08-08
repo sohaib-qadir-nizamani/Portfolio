@@ -4,20 +4,24 @@ import useFloatingNavigatorState from "@/hooks/useFloatingNavigatorState";
 
 const FloatingSectionNavigator = () => {
   const shouldReduceMotion = useReducedMotion();
-  const { arrowDirection, positionClassName, ariaLabel, handleNavigate, isFooterActive } =
+  const { arrowDirection, positionClassName, ariaLabel, handleNavigate } =
     useFloatingNavigatorState();
-  // Pass isFooterActive so the visibility hook suppresses its hide timer
-  // while the footer is fully in view.
-  const [isVisible, setIsHovered, buttonRef] = useArrowVisibility(isFooterActive);
+  const [isVisible, setIsHovered, buttonRef] = useArrowVisibility();
 
   const handleMouseEnter = () => {
-    if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: hover)").matches
+    ) {
       setIsHovered(true);
     }
   };
 
   const handleMouseLeave = () => {
-    if (typeof window !== "undefined" && window.matchMedia("(hover: hover)").matches) {
+    if (
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: hover)").matches
+    ) {
       setIsHovered(false);
     }
   };

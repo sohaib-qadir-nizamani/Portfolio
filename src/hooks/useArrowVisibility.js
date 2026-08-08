@@ -12,7 +12,7 @@ const isMobileMenuOpen = () => {
   return menuDialog.classList.contains('translate-x-0');
 };
 
-const useArrowVisibility = (isFooterActive = false) => {
+const useArrowVisibility = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [, setIsHovered] = useState(false);
   const hideTimerRef = useRef(null);
@@ -20,31 +20,6 @@ const useArrowVisibility = (isFooterActive = false) => {
   const isHoveredRef = useRef(false);
   const buttonRef = useRef(null);
   const mouseCoordsRef = useRef({ x: 0, y: 0 });
-  // Ref so event-handler closures always read the latest value without
-  // needing to be re-created when isFooterActive changes.
-  const isFooterActiveRef = useRef(isFooterActive);
-
-  // Sync prop → ref and drive visibility whenever footer-active state changes.
-  useEffect(() => {
-    isFooterActiveRef.current = isFooterActive;
-
-    if (isFooterActive) {
-      // Footer just became active — cancel any pending hide timer, stay visible.
-      if (hideTimerRef.current !== null) {
-        window.clearTimeout(hideTimerRef.current);
-        hideTimerRef.current = null;
-      }
-      setIsVisible(true);
-    } else {
-      // Footer no longer active — re-arm the normal hide timer if not hovered.
-      if (!isHoveredRef.current && hideTimerRef.current === null) {
-        hideTimerRef.current = window.setTimeout(() => {
-          setIsVisible(false);
-          hideTimerRef.current = null;
-        }, HIDE_DELAY_MS);
-      }
-    }
-  }, [isFooterActive]);
 
   const checkHoverState = useCallback(() => {
     if (!buttonRef.current) return false;
@@ -68,8 +43,8 @@ const useArrowVisibility = (isFooterActive = false) => {
       }
       setIsVisible(true);
     } else {
-      // Only arm the hide timer when not in footer-active state.
-      if (hideTimerRef.current === null && !isFooterActiveRef.current) {
+      // Arm the standard hide timer whenever the pointer isn't hovering.
+      if (hideTimerRef.current === null) {
         hideTimerRef.current = window.setTimeout(() => {
           setIsVisible(false);
           hideTimerRef.current = null;
@@ -112,8 +87,8 @@ const useArrowVisibility = (isFooterActive = false) => {
         setIsHovered(true);
       }
 
-      // Do not arm the hide timer while footer is active or pointer is hovering.
-      if (!isHoveredRef.current && !isFooterActiveRef.current) {
+      // Keep the standard hide-delay behavior whenever the pointer is not hovering.
+      if (!isHoveredRef.current) {
         hideTimerRef.current = window.setTimeout(() => {
           setIsVisible(false);
           hideTimerRef.current = null;
@@ -142,8 +117,7 @@ const useArrowVisibility = (isFooterActive = false) => {
             isHoveredRef.current = false;
             setIsHovered(false);
           }
-          // Do not arm hide timer while footer is active.
-          if (hideTimerRef.current === null && !isFooterActiveRef.current) {
+          if (hideTimerRef.current === null) {
             hideTimerRef.current = window.setTimeout(() => {
               setIsVisible(false);
               hideTimerRef.current = null;
@@ -153,9 +127,7 @@ const useArrowVisibility = (isFooterActive = false) => {
       }, 100);
     };
 
-    setIsVisible(true);
-    // Do not arm the initial mount timer while footer is already active.
-    if (!isHoveredRef.current && !isFooterActiveRef.current) {
+    if (!isHoveredRef.current) {
       hideTimerRef.current = window.setTimeout(() => {
         setIsVisible(false);
         hideTimerRef.current = null;
