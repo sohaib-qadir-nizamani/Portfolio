@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import useActiveSection from "@/hooks/useActiveSection";
 import useFooterState from "@/hooks/useFooterState";
 import useScrollDirection from "@/hooks/useScrollDirection";
@@ -16,22 +17,40 @@ const useFloatingNavigatorState = () => {
   const scrollDirection = useScrollDirection();
   const footerState = useFooterState();
   const { goHero, goNext, goPrevious } = useSectionNavigation();
+  const [isMobileViewport, setIsMobileViewport] = useState(
+    typeof window !== "undefined" && window.innerWidth < 768
+  );
 
   // Derived boolean — single source of truth for the footer-active condition.
   const isFooterActive = footerState === "active";
 
+  // Update mobile viewport state on window resize
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const handleResize = () => {
+      setIsMobileViewport(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   // Arrow direction priority:
   //   1. Footer active  → always UP  (ignore scroll-direction noise)
-  //   2. Hero active    → always DOWN
-  //   3. Otherwise      → follow scroll direction
+  //   2. Mobile viewport (< 768px) → follow scroll direction (including in Hero)
+  //   3. Hero active (desktop) → always DOWN
+  //   4. Otherwise      → follow scroll direction
   const isHeroActive = activeIndex === 0;
   const arrowDirection = isFooterActive
     ? "up"
-    : isHeroActive
-      ? "down"
-      : scrollDirection === "down"
+    : isMobileViewport
+      ? scrollDirection === "down" ? "down" : "up"
+      : isHeroActive
         ? "down"
-        : "up";
+        : scrollDirection === "down"
+          ? "down"
+          : "up";
 
   const handleNavigate = (event) => {
     event.preventDefault();

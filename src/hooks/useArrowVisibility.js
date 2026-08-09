@@ -87,8 +87,10 @@ const useArrowVisibility = () => {
         setIsHovered(true);
       }
 
-      // Keep the standard hide-delay behavior whenever the pointer is not hovering.
-      if (!isHoveredRef.current) {
+      // For mobile/touch interactions, always set a hide timer
+      // For desktop hover interactions, keep visible while hovering
+      const isMobileViewport = window.innerWidth < 768;
+      if (isMobileViewport || !isHoveredRef.current) {
         hideTimerRef.current = window.setTimeout(() => {
           setIsVisible(false);
           hideTimerRef.current = null;
