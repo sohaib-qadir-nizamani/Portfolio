@@ -1,17 +1,22 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "./Navbar";
 import useHeaderVisibility from "@/hooks/useHeaderVisibility";
+import { hasHoverCapability } from "@/utils/deviceCapabilities";
 
 function Header() {
   const { isVisible, variants, shouldReduceMotion, isHovered, setIsHovered } =
     useHeaderVisibility();
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    if (hasHoverCapability()) {
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    if (hasHoverCapability()) {
+      setIsHovered(false);
+    }
   };
 
   return (
