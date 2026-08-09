@@ -27,6 +27,7 @@ const useArrowVisibility = () => {
   const isVisibleRef = useRef(true);
   const pendingRevealOnlyClickRef = useRef(false);
   const lastVisibleArrowRectRef = useRef(null);
+  const lastTouchCoordsRef = useRef(null);
 
   const mouseCoordsRef = useRef({
     x: 0,
@@ -167,6 +168,15 @@ const useArrowVisibility = () => {
     }
 
     const handleMouseMove = (event) => {
+      if (
+        lastTouchCoordsRef.current &&
+        Math.abs(event.clientX - lastTouchCoordsRef.current.x) < 10 &&
+        Math.abs(event.clientY - lastTouchCoordsRef.current.y) < 10
+      ) {
+        return;
+      }
+      lastTouchCoordsRef.current = null;
+
       mouseCoordsRef.current = {
         x: event.clientX,
         y: event.clientY,
@@ -186,6 +196,10 @@ const useArrowVisibility = () => {
 
     const handleTouchStart = (event) => {
       const point = event?.changedTouches?.[0] ?? event;
+
+      if (point && typeof point.clientX === "number") {
+        lastTouchCoordsRef.current = { x: point.clientX, y: point.clientY };
+      }
 
       if (
         !isVisibleRef.current &&
@@ -212,7 +226,12 @@ const useArrowVisibility = () => {
       updateVisibilityState(true);
     };
 
-    const handleTouchMove = () => {
+    const handleTouchMove = (event) => {
+      const point = event?.changedTouches?.[0] ?? event;
+      if (point && typeof point.clientX === "number") {
+        lastTouchCoordsRef.current = { x: point.clientX, y: point.clientY };
+      }
+
       /*
        * A touch/drag is still active, therefore the arrow must
        * remain visible.
@@ -274,6 +293,16 @@ const useArrowVisibility = () => {
 
     const handleMouseDown = (event) => {
       const point = event ?? null;
+
+      if (
+        lastTouchCoordsRef.current && point &&
+        typeof point.clientX === "number" &&
+        Math.abs(point.clientX - lastTouchCoordsRef.current.x) < 10 &&
+        Math.abs(point.clientY - lastTouchCoordsRef.current.y) < 10
+      ) {
+        return;
+      }
+      lastTouchCoordsRef.current = null;
 
       if (
         !isVisibleRef.current &&
