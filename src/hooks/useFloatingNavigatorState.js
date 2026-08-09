@@ -24,6 +24,10 @@ const useFloatingNavigatorState = () => {
   // Derived boolean — single source of truth for the footer-active condition.
   const isFooterActive = footerState === "active";
 
+  const [isHeroFullyVisible, setIsHeroFullyVisible] = useState(
+    typeof window !== "undefined" && window.scrollY === 0
+  );
+
   // Update mobile viewport state on window resize
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -32,25 +36,31 @@ const useFloatingNavigatorState = () => {
       setIsMobileViewport(window.innerWidth < 768);
     };
 
+    const handleScroll = () => {
+      setIsHeroFullyVisible(window.scrollY === 0);
+    };
+
+    handleScroll();
+
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // Arrow direction priority:
   //   1. Footer active  → always UP  (ignore scroll-direction noise)
-  //   2. Mobile viewport (< 768px) → follow scroll direction (including in Hero)
-  //   3. Hero active (desktop) → always DOWN
-  //   4. Otherwise      → follow scroll direction
-  const isHeroActive = activeIndex === 0;
+  //   2. Hero fully visible (100%) → always DOWN
+  //   3. Otherwise      → follow scroll direction
   const arrowDirection = isFooterActive
     ? "up"
-    : isMobileViewport
-      ? scrollDirection === "down" ? "down" : "up"
-      : isHeroActive
+    : isHeroFullyVisible
+      ? "down"
+      : scrollDirection === "down"
         ? "down"
-        : scrollDirection === "down"
-          ? "down"
-          : "up";
+        : "up";
 
   const handleNavigate = (event) => {
     event.preventDefault();
