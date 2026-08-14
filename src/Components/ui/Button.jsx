@@ -1,18 +1,20 @@
-function Button({ children, onClick, variant = "primary" }) {
-  const styles = {
-    primary: "bg-blue-600 hover:bg-blue-700 text-white",
+// src/components/ui/Button.jsx
+// eslint-disable-next-line
+import React from "react";
 
-    secondary: "border border-slate-700 hover:bg-slate-800 text-slate-200",
-  };
-
+export default function Button({
+  children,
+  onClick,
+  className = "",
+  ...props
+}) {
   return (
     <button
       onClick={onClick}
-      className={`rounded-xl px-6 py-3 font-medium transition ${styles[variant]}`}
+      className={`interactive rounded-xl bg-blue-600 px-6 py-3 font-medium text-white shadow-md ${className}`}
+      {...props}
     >
       {children}
     </button>
   );
 }
-
-export default Button;

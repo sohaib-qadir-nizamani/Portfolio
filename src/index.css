@@ -3,3 +3,30 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* 1. Disable browser gesture delays and tap highlight boxes */
+button, 
+a, 
+.interactive {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
+}
+
+/* 2. Desktop-ONLY Hover (Prevents mobile sticky hovers) */
+@media (hover: hover) and (pointer: fine) {
+  button:hover, 
+  a:hover, 
+  .interactive:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* 3. Instant Mobile & Desktop Tap/Click Feedback */
+button:active, 
+a:active, 
+.interactive:active {
+  transform: scale(0.96);
+  opacity: 0.8;
+}
