@@ -21,7 +21,7 @@ const About = () => {
         </div>
 
         <div className="grid gap-8 md:grid-cols-2">
-          <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(59,130,246,0.22)] hover:shadow-blue-500/20">
+          <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(59,130,246,0.22)] hover:shadow-blue-500/20 active:-translate-y-1 active:scale-[1.02] active:shadow-[0_0_24px_rgba(59,130,246,0.22)] active:shadow-blue-500/20">
             <h3 className="mb-4 text-2xl font-semibold">My Journey</h3>
 
             <p className="leading-8 text-slate-400">
@@ -33,7 +33,7 @@ const About = () => {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(59,130,246,0.22)] hover:shadow-blue-500/20">
+          <div className="rounded-2xl border border-slate-800 bg-slate-950 p-8 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_24px_rgba(59,130,246,0.22)] hover:shadow-blue-500/20 active:-translate-y-1 active:scale-[1.02] active:shadow-[0_0_24px_rgba(59,130,246,0.22)] active:shadow-blue-500/20">
             <h3 className="mb-4 text-2xl font-semibold">What I Focus On</h3>
 
             <ul className="space-y-4 text-slate-400">

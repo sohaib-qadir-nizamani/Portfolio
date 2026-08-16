@@ -17,27 +17,45 @@ const Footer = () => {
 
         {/* Navigation */}
         <nav className="flex flex-wrap justify-center gap-6 text-sm text-slate-400">
-          <a href="#home" className="transition hover:text-blue-400">
+          <a
+            href="#home"
+            className="transition hover:text-blue-400 active:text-blue-400"
+          >
             Home
           </a>
 
-          <a href="#about" className="transition hover:text-blue-400">
+          <a
+            href="#about"
+            className="transition hover:text-blue-400 active:text-blue-400"
+          >
             About
           </a>
 
-          <a href="#skills" className="transition hover:text-blue-400">
+          <a
+            href="#skills"
+            className="transition hover:text-blue-400 active:text-blue-400"
+          >
             Skills
           </a>
 
-          <a href="#projects" className="transition hover:text-blue-400">
+          <a
+            href="#projects"
+            className="transition hover:text-blue-400 active:text-blue-400"
+          >
             Projects
           </a>
 
-          <a href="#experience" className="transition hover:text-blue-400">
+          <a
+            href="#experience"
+            className="transition hover:text-blue-400 active:text-blue-400"
+          >
             Experience
           </a>
 
-          <a href="#contact" className="transition hover:text-blue-400">
+          <a
+            href="#contact"
+            className="transition hover:text-blue-400 active:text-blue-400"
+          >
             Contact
           </a>
         </nav>
@@ -47,7 +65,7 @@ const Footer = () => {
           <a
             href="mailto:sohaib.qadir82@@gmail.com"
             aria-label="Email"
-            className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400"
+            className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
             <FaEnvelope size={22} />
           </a>
@@ -57,7 +75,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400"
+            className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
             <FaGithub size={22} />
           </a>
@@ -67,7 +85,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400"
+            className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
             <FaLinkedin size={22} />
           </a>

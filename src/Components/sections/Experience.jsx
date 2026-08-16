@@ -102,7 +102,7 @@ const Experience = () => {
 
                 <summary
                   onClick={(event) => handleToggle(item.year, event)}
-                  className="cursor-pointer list-none transition-colors duration-200 outline-none hover:text-blue-400 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 [&::-webkit-details-marker]:hidden"
+                  className="cursor-pointer list-none transition-colors duration-200 outline-none hover:text-blue-400 focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-blue-500 active:text-blue-400 [&::-webkit-details-marker]:hidden"
                 >
                   <div>
                     <p className="text-sm font-semibold text-blue-400">

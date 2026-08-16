@@ -46,7 +46,7 @@ const Projects = () => {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="rounded-2xl border border-slate-800 bg-slate-950 p-8 transition hover:-translate-y-2 hover:border-blue-500"
+              className="rounded-2xl border border-slate-800 bg-slate-950 p-8 transition hover:-translate-y-2 hover:border-blue-500 active:-translate-y-2 active:border-blue-500"
             >
               <div className="mb-6 h-48 rounded-xl bg-slate-800"></div>
 
@@ -68,14 +68,15 @@ const Projects = () => {
               <div className="mt-8 flex gap-4">
                 <a
                   href={project.github}
-                  className="rounded-lg bg-blue-600 px-4 py-2 hover:bg-blue-700"
+                  // className="rounded-lg bg-blue-600 px-4 py-2 duration-300 hover:bg-blue-700 active:scale-90 active:bg-blue-700"
+                  className="rounded-lg bg-blue-600 px-4 py-2 transition-transform duration-1000 ease-out hover:bg-blue-700 active:scale-90 active:bg-blue-700"
                 >
                   GitHub
                 </a>
 
                 <a
                   href={project.live}
-                  className="rounded-lg border border-slate-700 px-4 py-2 hover:border-blue-500"
+                  className="rounded-lg border border-slate-700 px-4 py-2 transition-transform duration-1000 ease-out hover:border-blue-500 active:scale-90 active:border-blue-500"
                 >
                   Live Demo
                 </a>

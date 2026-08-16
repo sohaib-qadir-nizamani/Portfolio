@@ -45,7 +45,7 @@ const Skills = () => {
                 {items.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full bg-slate-800 px-4 py-2 text-sm transition hover:bg-blue-600"
+                    className="rounded-full bg-slate-800 px-4 py-2 text-sm transition hover:bg-blue-600 active:bg-blue-600"
                   >
                     {item}
                   </span>

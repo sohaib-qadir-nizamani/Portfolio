@@ -4,29 +4,28 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 1. Disable browser gesture delays and tap highlight boxes */
+/* ==========================================================================
+   Global Touch & Mobile Safety Reset
+   ========================================================================== */
 button, 
 a, 
+[role="button"],
 .interactive {
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+  /* Prevents iOS long-press callout/preview menus */
+  -webkit-touch-callout: none;
+  
+  /* Prevents accidental text selection during taps or fast clicks */
+  -webkit-user-select: none;
   user-select: none;
+  
+  /* Disables double-tap zoom delay & limits gestures to pan/scroll */
+  touch-action: manipulation;
+  
+  /* Removes default webkit tap highlight overlay on Android & iOS */
+  -webkit-tap-highlight-color: transparent;
+  
+  /* Smooth UI transition default for active press/tap feedback */
   transition: transform 0.15s ease, opacity 0.15s ease, background-color 0.15s ease;
 }
 
-/* 2. Desktop-ONLY Hover (Prevents mobile sticky hovers) */
-@media (hover: hover) and (pointer: fine) {
-  button:hover, 
-  a:hover, 
-  .interactive:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}
 
-/* 3. Instant Mobile & Desktop Tap/Click Feedback */
-button:active, 
-a:active, 
-.interactive:active {
-  transform: scale(0.96);
-  opacity: 0.8;
-}

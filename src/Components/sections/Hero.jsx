@@ -61,7 +61,7 @@ const Hero = () => {
                 href="#contact"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-                className="min-w-42.5 rounded-xl bg-blue-600 px-7 py-3 text-center font-semibold text-white shadow-lg transition duration-300 hover:bg-blue-700 hover:shadow-blue-500/30 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none"
+                className="min-w-42.5 rounded-xl bg-blue-600 px-7 py-3 text-center font-semibold text-white shadow-lg transition duration-300 hover:bg-blue-700 hover:shadow-blue-500/30 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none active:bg-blue-700 active:shadow-blue-500/30"
               >
                 Hire Me
               </motion.a>
@@ -71,7 +71,7 @@ const Hero = () => {
                 download="Sohaib_Qadir_CV.pdf"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
                 whileTap={shouldReduceMotion ? {} : { scale: 0.95 }}
-                className="min-w-42.5 rounded-xl border border-slate-600 px-7 py-3 text-center font-semibold text-slate-200 transition duration-300 hover:border-white hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none"
+                className="min-w-42.5 rounded-xl border border-slate-600 px-7 py-3 text-center font-semibold text-slate-200 transition duration-300 hover:border-white hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none active:border-white active:bg-slate-800"
               >
                 Download CV
               </motion.a>
@@ -126,7 +126,7 @@ const Hero = () => {
                 loading="eager"
                 fetchPriority="high"
                 decoding="async"
-                className="h-full w-full object-cover transition duration-500 hover:scale-105"
+                className="h-full w-full object-cover transition duration-500 hover:scale-105 active:scale-105"
               />
             </motion.div>
           </div>
