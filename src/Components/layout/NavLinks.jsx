@@ -66,7 +66,7 @@ function NavLinks() {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <nav className="hidden md:flex items-center gap-6">
+    <nav className="hidden items-center gap-6 md:flex">
       {navigation.map((item) => {
         const itemIndex = SECTION_IDS.indexOf(item.id);
         const relation =
@@ -83,7 +83,7 @@ function NavLinks() {
           <a
             key={item.label}
             href={`#${item.id}`}
-            className="group relative inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium text-slate-300 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="group relative inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium text-slate-300 transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:text-white"
             onMouseEnter={() => setHoveredId(item.id)}
             onMouseLeave={() => setHoveredId(null)}
             onFocus={() => setHoveredId(item.id)}
@@ -94,11 +94,7 @@ function NavLinks() {
             <span
               className={`inline-flex items-center justify-center transition-opacity duration-150 ${
                 isHovered ? "opacity-100" : "opacity-0"
-              } ${
-                relation === "current"
-                  ? "text-blue-400"
-                  : "text-slate-400"
-              }`}
+              } ${relation === "current" ? "text-blue-400" : "text-slate-400"}`}
             >
               <IndicatorComponent />
             </span>

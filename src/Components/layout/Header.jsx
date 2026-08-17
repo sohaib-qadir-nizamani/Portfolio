@@ -4,6 +4,7 @@ import useHeaderVisibility from "@/hooks/useHeaderVisibility";
 import { hasHoverCapability } from "@/utils/deviceCapabilities";
 
 function Header() {
+  // eslint-disable-next-line no-unused-vars
   const { isVisible, variants, shouldReduceMotion, isHovered, setIsHovered } =
     useHeaderVisibility();
 

@@ -28,7 +28,7 @@ function Navbar() {
 
         <button
           ref={menuButtonRef}
-          className="md:hidden rounded-lg p-2 text-slate-300 hover:text-white hover:bg-slate-800 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+          className="rounded-lg p-2 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 focus-visible:outline-none active:bg-slate-800 active:text-white md:hidden"
           aria-label="Open navigation menu"
           aria-expanded={isOpen}
           onClick={() => setIsOpen(true)}

@@ -14,7 +14,8 @@ function MobileMenu({ isOpen, onClose }) {
     }
 
     // Prevent visual layout shift by compensating for scrollbar width
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const scrollbarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
     document.body.style.overflow = "hidden";
     if (scrollbarWidth > 0) {
       document.body.style.paddingRight = `${scrollbarWidth}px`;
@@ -89,7 +90,7 @@ function MobileMenu({ isOpen, onClose }) {
               key={item.label}
               href={`#${item.id}`}
               onClick={onClose}
-              className="rounded-lg px-4 py-3 text-slate-300 transition-colors hover:bg-slate-800 hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none"
+              className="rounded-lg px-4 py-3 text-slate-300 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:bg-slate-800 active:text-white"
             >
               {item.label}
             </a>
@@ -97,7 +98,7 @@ function MobileMenu({ isOpen, onClose }) {
         </nav>
       </aside>
     </>,
-    document.body
+    document.body,
   );
 }
 
