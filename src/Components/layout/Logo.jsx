@@ -9,7 +9,7 @@ function Logo() {
       <img
         src={logoImg}
         alt="SQ TechWorks Logo"
-        className="h-15 w-auto -translate-x-8 -translate-y-8 transition duration-500 hover:scale-105 active:scale-105 sm:h-18 sm:-translate-x-10 sm:translate-y-2 md:h-20 md:-translate-x-12 md:translate-y-3 lg:h-23 lg:-translate-x-14 lg:translate-y-4 xl:h-25 2xl:h-28"
+        className="h-14 w-auto translate-x-0 translate-y-0 transition duration-500 hover:scale-105 active:scale-105 sm:w-40 sm:-translate-x-1 md:-translate-x-6 md:max-[825px]:h-12 lg:h-18 lg:w-60 lg:-translate-x-9 xl:h-20"
       />
     </a>
   );

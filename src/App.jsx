@@ -1,8 +1,3 @@
-// import Badge from "@/Components/ui/Badge";
-// import Button from "@/Components/ui/Button";
-// import Container from "@/Components/ui/Container";
-// import Heading from "@/Components/ui/Heading";
-// import Section from "@/Components/ui/Section";
 import Header from "@/Components/layout/Header";
 import { useEffect } from "react";
 import Hero from "@/Components/sections/Hero";
