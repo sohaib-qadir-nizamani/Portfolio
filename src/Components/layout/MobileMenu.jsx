@@ -54,7 +54,7 @@ function MobileMenu({ isOpen, onClose }) {
       <div
         onClick={onClose}
         inert={!isOpen ? "" : undefined}
-        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-black/60 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           isOpen
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
@@ -67,7 +67,7 @@ function MobileMenu({ isOpen, onClose }) {
         aria-modal="true"
         aria-label="Mobile navigation menu"
         inert={!isOpen ? "" : undefined}
-        className={`fixed top-0 right-0 z-50 h-screen w-full max-w-xs overflow-y-auto border-l border-slate-800 bg-slate-950/95 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed top-0 right-0 z-50 h-screen w-full max-w-xs overflow-y-auto border-l border-slate-800 bg-slate-950/95 shadow-2xl backdrop-blur-xl transition-transform duration-300 ease-out lg:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

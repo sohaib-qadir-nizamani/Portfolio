@@ -83,7 +83,7 @@ function NavLinks() {
           <a
             key={item.label}
             href={`#${item.id}`}
-            className="group relative inline-flex items-center gap-1 rounded-md px-2 py-1 text-sm font-medium text-slate-300 transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:text-white"
+            className="group relative inline-flex items-center gap-0 rounded-md px-2 py-1 text-sm font-medium text-slate-300 transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:text-white"
             onMouseEnter={() => setHoveredId(item.id)}
             onMouseLeave={() => setHoveredId(null)}
             onFocus={() => setHoveredId(item.id)}

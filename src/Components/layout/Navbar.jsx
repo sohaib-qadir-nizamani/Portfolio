@@ -21,7 +21,7 @@ function Navbar() {
 
   return (
     <>
-      <Container className="flex h-16 items-center justify-between">
+      <Container className="flex h-24 items-center justify-between">
         <Logo />
 
         <NavLinks />
