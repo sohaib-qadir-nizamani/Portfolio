@@ -55,8 +55,8 @@ const Hero = () => {
             clean, maintainable code.
           </p>
 
-          <div className="mt-10 flex flex-col items-center gap-4 md:items-start">
-            <div className="flex w-full justify-center gap-4 sm:w-auto sm:gap-8">
+          <div className="mt-10 flex flex-col items-center gap-4">
+            <div className="flex w-full flex-wrap justify-center gap-4 sm:w-auto sm:gap-8">
               <motion.a
                 href="#contact"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
