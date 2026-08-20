@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="relative border-t border-slate-800 bg-slate-950">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 pt-16 pb-8">
         {/* Branding */}
-        <div className="text-center">
+        <div className="shrink text-center">
           <h3 className="text-2xl font-bold text-white">Sohaib Qadir</h3>
 
           <p className="mt-2 text-slate-400">
@@ -16,7 +16,7 @@ const Footer = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+        <nav className="flex shrink flex-wrap justify-center gap-6 text-sm text-slate-400">
           <a
             href="#home"
             className="transition hover:text-blue-400 active:text-blue-400"
@@ -61,7 +61,7 @@ const Footer = () => {
         </nav>
 
         {/* Social Links */}
-        <div className="flex items-center gap-6">
+        <div className="flex shrink items-center gap-6">
           <a
             href="mailto:sohaib.qadir82@@gmail.com"
             aria-label="Email"
@@ -92,7 +92,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-slate-800 pt-6 text-center">
+        <div className="shrink border-t border-slate-800 pt-6 text-center">
           <p className="text-sm text-slate-500">
             © {year} Sohaib Qadir. All Rights Reserved.
           </p>

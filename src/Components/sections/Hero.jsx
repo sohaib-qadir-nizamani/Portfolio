@@ -56,7 +56,7 @@ const Hero = () => {
           </p>
 
           <div className="mt-10 flex flex-col items-center gap-4">
-            <div className="flex w-full flex-wrap justify-center gap-4 sm:w-auto sm:gap-8">
+            <div className="flex w-full shrink flex-wrap justify-center gap-4 sm:w-auto sm:gap-8">
               <motion.a
                 href="#contact"
                 whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
@@ -105,7 +105,7 @@ const Hero = () => {
             />
 
             <motion.div
-              className="relative h-72 w-72 overflow-hidden rounded-full border-4 border-blue-500 bg-slate-900 shadow-[0_0_60px_rgba(59,130,246,0.35)] sm:h-80 sm:w-80 lg:h-96 lg:w-96"
+              className="relative h-72 w-72 overflow-hidden rounded-full border-4 border-blue-500 bg-slate-900 shadow-[0_0_60px_rgba(59,130,246,0.35)] sm:h-80 sm:w-80 lg:h-96 lg:w-96 [@media(max-width:16rem)]:h-36 [@media(max-width:16rem)]:w-36 [@media(max-width:25rem)]:h-56 [@media(max-width:25rem)]:w-56"
               initial={
                 shouldReduceMotion
                   ? false

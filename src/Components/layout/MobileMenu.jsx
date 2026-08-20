@@ -90,7 +90,7 @@ function MobileMenu({ isOpen, onClose }) {
               key={item.label}
               href={`#${item.id}`}
               onClick={onClose}
-              className="rounded-lg px-4 py-3 text-slate-300 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:bg-slate-800 active:text-white"
+              className="shrink rounded-lg px-4 py-3 text-slate-300 transition-colors focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:outline-none active:bg-slate-800 active:text-white"
             >
               {item.label}
             </a>

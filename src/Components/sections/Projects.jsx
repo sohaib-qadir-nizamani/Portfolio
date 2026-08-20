@@ -65,18 +65,18 @@ const Projects = () => {
                 ))}
               </div>
 
-              <div className="mt-8 flex gap-4">
+              <div className="mt-8 flex justify-center gap-4 [@media(max-width:20rem)]:flex-col">
                 <a
                   href={project.github}
                   // className="rounded-lg bg-blue-600 px-4 py-2 duration-300 hover:bg-blue-700 active:scale-90 active:bg-blue-700"
-                  className="rounded-lg bg-blue-600 px-4 py-2 transition-transform duration-1000 ease-out hover:bg-blue-700 active:scale-90 active:bg-blue-700"
+                  className="shrink rounded-lg bg-blue-600 px-4 py-2 transition-transform duration-1000 ease-out hover:bg-blue-700 active:scale-90 active:bg-blue-700 [@media(max-width:20rem)]:text-center"
                 >
                   GitHub
                 </a>
 
                 <a
                   href={project.live}
-                  className="rounded-lg border border-slate-700 px-4 py-2 transition-transform duration-1000 ease-out hover:border-blue-500 active:scale-90 active:border-blue-500"
+                  className="shrink rounded-lg border border-slate-700 px-4 py-2 transition-transform duration-1000 ease-out hover:border-blue-500 active:scale-90 active:border-blue-500 [@media(max-width:20rem)]:text-center"
                 >
                   Live Demo
                 </a>
