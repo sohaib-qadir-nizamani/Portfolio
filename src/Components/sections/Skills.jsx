@@ -21,31 +21,37 @@ const skills = {
 
 const Skills = () => {
   return (
-    <section id="skills" className="bg-slate-950 px-6 py-24 text-white lg:px-8">
+    <section
+      id="skills"
+      className="bg-slate-950 px-4 py-16 text-white sm:px-6 md:py-24 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl">
-        <div className="mb-16 text-center">
-          <p className="text-sm font-semibold tracking-[0.3em] text-blue-400 uppercase">
+        <div className="mb-12 text-center sm:mb-16">
+          <p className="text-xs font-semibold tracking-[0.2em] text-blue-400 uppercase sm:text-sm sm:tracking-[0.3em]">
             Skills
           </p>
 
-          <h2 className="mt-4 text-4xl font-bold md:text-5xl">
+          <h2 className="mt-3 text-3xl font-bold sm:mt-4 sm:text-4xl md:text-5xl">
             Technologies I Work With
           </h2>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
           {Object.entries(skills).map(([title, items]) => (
+            // Skill Card
             <div
               key={title}
-              className="rounded-2xl border border-slate-800 bg-slate-900 p-8"
+              className="rounded-xl border border-slate-800 bg-slate-900 p-5 sm:rounded-2xl sm:p-8"
             >
-              <h3 className="mb-6 text-2xl font-semibold">{title}</h3>
+              <h3 className="mb-4 text-xl font-semibold sm:mb-6 sm:text-2xl">
+                {title}
+              </h3>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {items.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full bg-slate-800 px-4 py-2 text-sm transition hover:bg-blue-600 active:bg-blue-600"
+                    className="rounded-full bg-slate-800 px-3 py-1.5 text-xs transition hover:bg-blue-600 active:bg-blue-600 sm:px-4 sm:py-2 sm:text-sm"
                   >
                     {item}
                   </span>

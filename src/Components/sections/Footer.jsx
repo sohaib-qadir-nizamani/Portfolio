@@ -5,18 +5,20 @@ const Footer = () => {
 
   return (
     <footer className="relative border-t border-slate-800 bg-slate-950">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 pt-16 pb-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 px-4 pt-12 pb-6 sm:gap-8 sm:px-6 sm:pt-16 sm:pb-8 lg:px-8">
         {/* Branding */}
         <div className="shrink text-center">
-          <h3 className="text-2xl font-bold text-white">Sohaib Qadir</h3>
+          <h3 className="text-xl font-bold text-white sm:text-2xl">
+            Sohaib Qadir
+          </h3>
 
-          <p className="mt-2 text-slate-400">
+          <p className="mt-1 text-xs text-slate-400 sm:mt-2 sm:text-sm">
             Front-End Web Application Developer
           </p>
         </div>
 
         {/* Navigation */}
-        <nav className="flex shrink flex-wrap justify-center gap-6 text-sm text-slate-400">
+        <nav className="flex shrink flex-wrap justify-center gap-4 text-xs text-slate-400 sm:gap-6 sm:text-sm">
           <a
             href="#home"
             className="transition hover:text-blue-400 active:text-blue-400"
@@ -61,13 +63,13 @@ const Footer = () => {
         </nav>
 
         {/* Social Links */}
-        <div className="flex shrink items-center gap-6">
+        <div className="flex shrink items-center gap-5 sm:gap-6">
           <a
-            href="mailto:sohaib.qadir82@@gmail.com"
+            href="mailto:sohaib.qadir82@gmail.com"
             aria-label="Email"
             className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
-            <FaEnvelope size={22} />
+            <FaEnvelope size={20} className="sm:h-[22px] sm:w-[22px]" />
           </a>
 
           <a
@@ -77,7 +79,7 @@ const Footer = () => {
             aria-label="GitHub"
             className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
-            <FaGithub size={22} />
+            <FaGithub size={20} className="sm:h-[22px] sm:w-[22px]" />
           </a>
 
           <a
@@ -87,13 +89,13 @@ const Footer = () => {
             aria-label="LinkedIn"
             className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
-            <FaLinkedin size={22} />
+            <FaLinkedin size={20} className="sm:h-[22px] sm:w-[22px]" />
           </a>
         </div>
 
         {/* Copyright */}
-        <div className="shrink border-t border-slate-800 pt-6 text-center">
-          <p className="text-sm text-slate-500">
+        <div className="w-full shrink border-t border-slate-800 pt-5 text-center sm:pt-6">
+          <p className="text-xs text-slate-500 sm:text-sm">
             © {year} Sohaib Qadir. All Rights Reserved.
           </p>
         </div>

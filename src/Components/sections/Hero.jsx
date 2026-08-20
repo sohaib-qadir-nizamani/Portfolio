@@ -105,7 +105,7 @@ const Hero = () => {
             />
 
             <motion.div
-              className="relative h-72 w-72 overflow-hidden rounded-full border-4 border-blue-500 bg-slate-900 shadow-[0_0_60px_rgba(59,130,246,0.35)] sm:h-80 sm:w-80 lg:h-96 lg:w-96 [@media(max-width:16rem)]:h-36 [@media(max-width:16rem)]:w-36 [@media(max-width:25rem)]:h-56 [@media(max-width:25rem)]:w-56"
+              className="relative h-36 w-36 overflow-hidden rounded-full border-4 border-blue-500 bg-slate-900 shadow-[0_0_60px_rgba(59,130,246,0.35)] sm:h-80 sm:w-80 lg:h-96 lg:w-96 [@media(min-width:25rem)]:h-56 [@media(min-width:25rem)]:w-56"
               initial={
                 shouldReduceMotion
                   ? false
