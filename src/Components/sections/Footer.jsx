@@ -69,7 +69,7 @@ const Footer = () => {
             aria-label="Email"
             className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
-            <FaEnvelope size={20} className="sm:h-[22px] sm:w-[22px]" />
+            <FaEnvelope size={20} className="sm:h-5.5 sm:w-5.5" />
           </a>
 
           <a
@@ -79,7 +79,7 @@ const Footer = () => {
             aria-label="GitHub"
             className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
-            <FaGithub size={20} className="sm:h-[22px] sm:w-[22px]" />
+            <FaGithub size={20} className="sm:h-5.5 sm:w-5.5" />
           </a>
 
           <a
@@ -89,7 +89,7 @@ const Footer = () => {
             aria-label="LinkedIn"
             className="text-slate-400 transition duration-300 hover:-translate-y-1 hover:text-blue-400 active:-translate-y-1 active:text-blue-400"
           >
-            <FaLinkedin size={20} className="sm:h-[22px] sm:w-[22px]" />
+            <FaLinkedin size={20} className="sm:h-5.5 sm:w-5.5" />
           </a>
         </div>
 
