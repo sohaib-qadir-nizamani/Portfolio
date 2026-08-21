@@ -1,4 +1,4 @@
-import HeroSocials from "@/components/hero/HeroSocials";
+import HeroSocials from "@/Components/hero/HeroSocials";
 import SohaibCV from "@/assets/docs/SohaibCV.pdf";
 import ProfileImage from "@/assets/images/profile.png";
 import { motion, useReducedMotion } from "framer-motion";

@@ -6,7 +6,7 @@ import About from "@/Components/sections/About";
 import Skills from "@/Components/sections/Skills";
 import Projects from "@/Components/sections/Projects";
 import Experience from "@/Components/sections/Experience";
-import Contact from "@/Components/sections/contact";
+import Contact from "@/Components/sections/Contact";
 import Footer from "@/Components/sections/Footer";
 
 function App() {
