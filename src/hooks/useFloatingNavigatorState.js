@@ -17,15 +17,17 @@ const useFloatingNavigatorState = () => {
   const scrollDirection = useScrollDirection();
   const footerState = useFooterState();
   const { goHero, goNext, goPrevious } = useSectionNavigation();
+
+  //eslint-disable-next-line no-unused-vars
   const [isMobileViewport, setIsMobileViewport] = useState(
-    typeof window !== "undefined" && window.innerWidth < 768
+    typeof window !== "undefined" && window.innerWidth < 768,
   );
 
   // Derived boolean — single source of truth for the footer-active condition.
   const isFooterActive = footerState === "active";
 
   const [isHeroFullyVisible, setIsHeroFullyVisible] = useState(
-    typeof window !== "undefined" && window.scrollY === 0
+    typeof window !== "undefined" && window.scrollY === 0,
   );
 
   // Update mobile viewport state on window resize
