@@ -7,8 +7,9 @@ const experiences = [
     title: "Front-End Web Application Developer",
     company: "Freelance",
     description:
-      "Building modern, responsive, and accessible web applications using React, JavaScript, Tailwind CSS, Vite, and AI-assisted development tools.",
+      "As a Front-End Web Application Developer, I build modern, responsive, accessible, and interactive web applications using React, JavaScript (ES6+), Tailwind CSS, Vite, and Framer Motion. I develop component-based interfaces with reusable custom React hooks, structured state management using Redux Toolkit and Context API, and maintainable feature-oriented architecture. I implement responsive layouts, mobile and touch interactions, accessibility features, performance-conscious browser behavior, and sophisticated UI interactions using modern web APIs and event handling. I use Git, GitHub, VS Code, npm, Chrome DevTools, and AI-assisted development tools to streamline development, debugging, code review, refactoring, and problem-solving. My projects include responsive SPAs, navigation systems, animated interfaces, API-integrated applications, and state-driven user experiences. I combine hands-on front-end development with a strong IT infrastructure background, bringing analytical thinking, troubleshooting skills, and a reliability-focused engineering approach to web application development",
   },
+
   {
     year: "2020 – 2022",
     title: "Computer System In-Charge",
